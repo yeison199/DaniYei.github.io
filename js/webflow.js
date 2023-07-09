@@ -94,3 +94,51 @@ function writeText() {
 
 writeText();
 
+//HOJA DE CONFIRMACIÓN
+
+  // Carga la API de Google Sheets
+  gapi.load('client', init);
+
+  function init() {
+    // Configura las credenciales de autenticación
+    gapi.client.init({
+      apiKey: 'AIzaSyACNJCFkkoirmEi8HgIMxzEFKHhqq9ocsI',
+      clientId: '53743242734-cgnpsfbrub9gmae15m8mi6eendh9tshf.apps.googleusercontent.com',
+      discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+      scope: 'https://www.googleapis.com/auth/spreadsheets'
+    }).then(function() {
+      // Autenticación exitosa, llama a la función para enviar los datos
+      sendFormData();
+    }, function(error) {
+      console.log('Error de autenticación:', error);
+    });
+  }
+
+  function sendFormData() {
+    // ID de la hoja de cálculo y nombre de la hoja
+    var spreadsheetId = '1aLkEYVnuXAQQRwk6mbE28F2dU1ghcKScmCCmYa0hHzI';
+    var sheetName = 'Confirmaciion';
+
+    // Datos del formulario
+    var formData = {
+      name: 'Nombre del formulario',
+      email: 'correo@example.com',
+      message: 'Mensaje del formulario'
+    };
+
+    // Envia los datos a Google Sheets
+    gapi.client.sheets.spreadsheets.values.append({
+      spreadsheetId: spreadsheetId,
+      range: sheetName + '!A1:C1',
+      valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [[formData.name, formData.email, formData.message]]
+      }
+    }).then(function(response) {
+      console.log('Datos enviados correctamente:', response);
+    }, function(error) {
+      console.log('Error al enviar los datos:', error);
+    });
+  }
+
