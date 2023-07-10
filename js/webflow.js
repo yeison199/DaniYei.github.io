@@ -103,3 +103,30 @@ function openModal() {
     var modal = document.getElementById("modal");
     modal.style.display = "none";
   }
+
+
+  //Copiar CVU
+
+  const accounts = [
+    {suffix: 'MP', field: 'cvuText'},
+    {suffix: 'OC', field: 'cbuText'}
+  ];
+  
+  accounts.forEach(({suffix, field}) => {
+    document.getElementById(`copyLink${suffix}`).addEventListener('click', function(event) {
+      event.preventDefault();
+      var range = document.createRange();
+      range.selectNode(document.getElementById(`${field}${suffix}`));
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+  
+      try {
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        alert('¡Copiado!');
+      } catch(err) {
+        console.log('Lo siento, no se pudo copiar el texto: ', err);
+      }
+    });
+  });
+  
