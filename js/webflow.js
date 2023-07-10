@@ -123,10 +123,20 @@ function openModal() {
       try {
         document.execCommand('copy');
         window.getSelection().removeAllRanges();
-        alert('¡Copiado!');
+        
+        // Mostramos la notificación
+        let notification = document.getElementById('notification');
+        notification.textContent = '¡Copiado!';
+        notification.style.visibility = 'visible';
+  
+        // Después de 3 segundos, ocultamos la notificación
+        setTimeout(() => {
+          notification.style.visibility = 'hidden';
+        }, 3000);
       } catch(err) {
         console.log('Lo siento, no se pudo copiar el texto: ', err);
       }
     });
   });
+  
   
