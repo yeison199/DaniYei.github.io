@@ -1043,111 +1043,6 @@ a {
 }
 
 
-.form__input {
-  width: clamp(120px, 50vw, 420px);
-  height: 2.5rem;
-  padding: 0 1.25rem;
-  border: 1px solid $black;
-  border-radius: 2px;
-  margin: 0.625rem auto;
-  transition: all 250ms;
-  @media (min-width: 768px) {
-    width: clamp(120px, 35vw, 420px);
-  }
-  
-  &:focus {
-    outline: none;
-    border-top-color: rgba(129, 11, 11, 0.432);
-  }
-  
- 
-  &:focus + .form__label, &:not(:placeholder-shown) + .form__label {
-    transform: translateY(-4.50rem) scale(1);
-    color: rgb(80, 78, 78);
-  }
-  
-  &::placeholder {
-      display: none;
-      color: transparent;
-    
-      // Prevents users from highlighting the placeholder.
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
-  }
-  
-  // How to read this:
-  /* When the placeholder is NOT shown,
-     style the top border. */
-  /* This makes the top border fade-out when the placeholder disappears. */
-  &:not(:placeholder-shown) {
-    border-top-color: rgba(0, 0, 0, 0.5);
-  }
-}
-
-.form__label {
-  font-size: 1rem;
-  color: $grey;
-  display: block;
-  
-  /* Moves the label on TOP of the placeholder */
-  /* You'll need to change this as needed */
-  transform: translate(1.25rem,-2.5rem);
-  transform-origin: 0 0; /* Used later for transitions */
-  transition: all 500ms;
-  
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-  
-  /* THIS PART IS IMPORTANT! */
-  /* This line prevents the label from being selected.*/
-  /* This is crucial because if this line doesn't exist, users can
-     click on the label, instead of the input field. That's bad UX! */
-  pointer-events: none; 
-}
-
-
-.containerModal {
-  width: 100%;
-  max-width: 768px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 2rem 1.5rem;
-  background-color: $code;
-  
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .cta-form {
-    margin-bottom: 2rem;
-    text-align: center;
-    
-    @media (min-width: 768px) {
-      margin-bottom: 0;
-      margin-right: 2rem;
-      text-align: left;
-    }
-  
-    .titleModal {
-      font-size: 1.5rem;
-        width: 100%;
-        max-width: 25ch;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .textModal{
-      margin-top: 1rem;
-          font-size: 1rem;
-          width: 100%;
-          max-width: 58ch;
-    }
-  
-  }}
 
   .centered-button {
     display: block;
@@ -1209,7 +1104,178 @@ a {
     border-radius: 10px;
   }
   
+/* MODAL CONFIRMACIÓN */
+
+.ModalConfirm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 254, 254, 0.987);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.ModalConfirm .user-box {
+  position: relative;
+}
+
+.ModalConfirm .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #0f0c0c;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  outline: none;
+  background: transparent;
+}
+
+.ModalConfirm .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #0f0c0c;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.ModalConfirm .user-box input:focus ~ label,
+.ModalConfirm .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #0a0808;
+  font-size: 12px;
+}
+
+.ModalConfirm form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #141010;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.ModalConfirm a:hover {
+  background: #060706;
+  color: #f1eded;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #4263eb,
+              0 0 25px #4263eb,
+              0 0 50px #4263eb,
+              0 0 100px #4263eb;
+}
+
+.ModalConfirm a span {
+  position: absolute;
+  display: block;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.ModalConfirm a span:nth-child(1) {
+  bottom: 2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4263eb);
+  animation: btn-anim1 2s linear infinite;
+}
+
+
+
+/*SOCIAL MEDIA*/
+
+.cardSocial{
+  width: fit-content;
+  height: fit-content;
+  background-color: #4263eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
   
+}
 
+/* for all social containers*/
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color:  #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: .3s;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: .3s;
+}
+/* twitter*/
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: .3s;
+}
+/* linkdin*/
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: .3s;
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #128C7E;
+  transition-duration: .3s;
+}
 
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: .3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: #364fc7;
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
