@@ -78,7 +78,7 @@ function countdown() {
   countdown();
 
   const textElement = document.getElementById("text");
-const text = "Nos alegra que seas parte de nuestra vida, que hayas acompañado nuestros pasos y compartido nuestros sueños. Has sido un testigo esencial de nuestra historia, viendo cómo florece nuestro amor y cómo nos hemos convertido en lo que somos hoy.";
+const text = "Queremos celebrar este hermoso momento con nuestros seres queridos y no podríamos imaginar este día sin vos, para así juntos crear recuerdos inolvidables.";
 let index = 0;
 
 function writeText() {
